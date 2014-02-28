@@ -7,7 +7,7 @@ var request  = require('request')
 
 exports.login = function(config, callback) {
 
-  fs.readFile('payload.xml', 'utf-8', function (err, data) {
+  fs.readFile(__dirname+'/payload.xml', 'utf-8', function (err, data) {
     if (err) {
       throw err;
     }
