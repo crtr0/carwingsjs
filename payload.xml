@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ns2:SmartphoneLoginWithAdditionalOperationRequest 
+  xmlns:ns4="urn:com:hitachi:gdc:type:report:v1" xmlns:ns7="urn:com:airbiquity:smartphone.vehicleservice:v1"   
+  xmlns:ns3="http://www.nissanusa.com/owners/schemas/api/0" xmlns:ns5="urn:com:airbiquity:smartphone.reportservice:v1"
+  xmlns:ns2="urn:com:airbiquity:smartphone.userservices:v1" xmlns:ns6="urn:com:hitachi:gdc:type:vehicle:v1">
+  <SmartphoneLoginInfo>
+    <UserLoginInfo>
+      <userId>{{leaf_username}}</userId>
+      <userPassword>{{leaf_password}}</userPassword>
+    </UserLoginInfo>
+    <DeviceToken>{{device_token}}</DeviceToken>
+    <UUID>{{device_id}}</UUID>
+    <Locale>US</Locale>
+    <AppVersion>1.40</AppVersion>
+    <SmartphoneType>IPHONE</SmartphoneType>
+  </SmartphoneLoginInfo>
+  <SmartphoneOperationType>SmartphoneGetPreferencesRequest</SmartphoneOperationType>
+  <SmartphoneOperationType>SmartphoneLatestBatteryStatusRequest</SmartphoneOperationType>
+  <SmartphoneOperationType>SmartphoneLatestACStatusRequest</SmartphoneOperationType>
+  <SmartphoneOperationType>SmartphoneGetScheduledACRemoteRequest</SmartphoneOperationType>
+</ns2:SmartphoneLoginWithAdditionalOperationRequest>
