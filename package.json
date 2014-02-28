@@ -1,16 +1,32 @@
 {
-  "name": "leafjs",
-  "version": "0.0.0",
+  "name": "carwingsjs",
+  "version": "0.0.1",
   "description": "Node bindings for the Nissan Leaf Carwings API",
   "main": "index.js",
   "dependencies": {
     "request": "*",
     "mustache": "*",
-    "xml2js": "*"
+    "xpath": "*",
+    "xmldom": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Carter Rabasa",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crabasa/carwingsjs.git"
+  },
+  "keywords": [
+    "nissan",
+    "leaf",
+    "carwings",
+    "api"
+  ],
+  "bugs": {
+    "url": "https://github.com/crabasa/carwingsjs/issues"
+  },
+  "homepage": "https://github.com/crabasa/carwingsjs"
 }
