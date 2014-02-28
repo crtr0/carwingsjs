@@ -21,6 +21,7 @@ carwings.login({
 }, function(err, output) {
 	console.log(output);
 })
+```
 
 ## Appendix
 
