@@ -20,7 +20,7 @@ carwings.login('username', 'password', function(err, output) {
 
 ## Contributors
 
-[https://github.com/crabasa/carwingsjs/graphs/contributors](https://github.com/crabasa/carwings/graphs/contributors)
+[https://github.com/crabasa/carwingsjs/graphs/contributors](https://github.com/crabasa/carwingsjs/graphs/contributors)
 
 ## License
 
