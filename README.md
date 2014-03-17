@@ -1,6 +1,6 @@
 #CarwingsJS
 
-CarwingsJS is a Node module that provides bindings for the Nissan Leaf [Carwings][1] API. To be clear, this API is not officially documented externally and it is unclear how long Nissan will continue to allow 3rd party apps to connect to it. 
+CarwingsJS is a Node module that provides bindings for the Nissan Leaf [Carwings][1] SOAP API. To be clear, Carwings API is not officially documented externally and it is unclear how long Nissan will continue to allow 3rd party apps to connect to it. 
 
 ## Installation
 
@@ -13,15 +13,18 @@ In your application
 ```
 var carwings = require('carwings');
 
-carwings.login({
-  leaf_username: 'username',
-  leaf_password: 'password',
-  device_token: 'device token',
-  device_id: 'unique device id'	
-}, function(err, output) {
+carwings.login('username', 'password', function(err, output) {
 	console.log(output);
 })
 ```
+
+## Contributors
+
+[https://github.com/crabasa/carwingsjs/graphs/contributors](https://github.com/crabasa/carwings/graphs/contributors)
+
+## License
+
+MIT
 
 ## Appendix
 
