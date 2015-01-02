@@ -53,8 +53,10 @@ var _getVehicle = function(node) {
   vehicleResponse.lastBatteryStatusCheckExecutionTime = node['SmartphoneBatteryStatusResponseType']['lastBatteryStatusCheckExecutionTime']
   vehicleResponse.pluginState = node['SmartphoneBatteryStatusResponseType']['ns3:BatteryStatusRecords']['ns3:PluginState'];
   if (vehicleResponse.pluginState != PLUGIN_STATUS_DISCONNECTED) {
-    vehicleResponse.hoursRequiredToFull = node['SmartphoneBatteryStatusResponseType']['ns3:BatteryStatusRecords']['ns3:TimeRequiredToFull']['ns3:HourRequiredToFull'];
-    vehicleResponse.minutesRequiredToFull = node['SmartphoneBatteryStatusResponseType']['ns3:BatteryStatusRecords']['ns3:TimeRequiredToFull']['ns3:MinutesRequiredToFull'];
+    if (node['SmartphoneBatteryStatusResponseType']['ns3:BatteryStatusRecords']['ns3:TimeRequiredToFull']) {
+      vehicleResponse.hoursRequiredToFull = node['SmartphoneBatteryStatusResponseType']['ns3:BatteryStatusRecords']['ns3:TimeRequiredToFull']['ns3:HourRequiredToFull'];
+      vehicleResponse.minutesRequiredToFull = node['SmartphoneBatteryStatusResponseType']['ns3:BatteryStatusRecords']['ns3:TimeRequiredToFull']['ns3:MinutesRequiredToFull'];
+    }
   }
   return vehicleResponse;
 };
@@ -154,3 +156,58 @@ exports.vehicleStatus = function(vin, callback) {
     }
   });
 };
+
+/**
+* Tell Carwings to signal the car to start the climate control system
+* at the specified datetime (pass null for the date argument to start
+* the climate control immediately). This method returns no data.
+* It will take anywhere from 30 seconds to 5 minutes for Carwings
+* to process this request.
+*
+* @param vin
+* @param date
+* @param callback
+* @api public
+*/
+exports.startClimateControl = function(vin, date, callback) {
+
+  var payload = ['ns4:SmartphoneRemoteACTimerRequest', {
+    _attr: {
+      'xmlns:ns4' : 'urn:com:airbiquity:smartphone.vehicleservice:v1',
+      'xmlns:ns3' : 'urn:com:hitachi:gdc:type:vehicle:v1',
+      'xmlns:ns2' : 'urn:com:hitachi:gdc:type:portalcommon:v1' },
+      'ns3:ACRemoteRequest' : {
+        'ns3:VehicleServiceRequestHeader': {
+          'ns2:VIN': vin },
+        'ns3:NewACRemoteRequest': {
+          'ns3:ExecuteTime': (date || new Date()).toISOString() }
+        }
+      }];
+
+  _post('vehicleService', payload, callback);
+}
+
+/**
+* Tell Carwings to signal the car to stop the climate control system.
+* This method returns no data. It will take anywhere from 30 seconds
+* to 5 minutes for Carwings to process this request.
+*
+* @param vin
+* @param callback
+* @api public
+*/
+exports.stopClimateControl = function(vin, callback) {
+
+  var payload = ['ns4:SmartphoneRemoteACOffRequest', {
+    _attr: {
+      'xmlns:ns4' : 'urn:com:airbiquity:smartphone.vehicleservice:v1',
+      'xmlns:ns3' : 'urn:com:hitachi:gdc:type:vehicle:v1',
+      'xmlns:ns2' : 'urn:com:hitachi:gdc:type:portalcommon:v1' },
+      'ns3:ACRemoteOffRequest' : {
+        'ns3:VehicleServiceRequestHeader': {
+          'ns2:VIN': vin }
+        }
+      }];
+
+  _post('vehicleService', payload, callback);
+}
