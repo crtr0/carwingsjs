@@ -31,7 +31,7 @@ var _post = function(service, payload, callback) {
       }
       else {  
         //console.log(response);
-        console.log(body);
+        //console.log(body);
         parser.parseString(body, callback);
       }      
     });
